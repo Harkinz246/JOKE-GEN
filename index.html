@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JokeByHarkinz - Joke Generator</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="min-h-screen bg-slate-950 text-white grid-bg">
+
+    <!-- Main -->
+    <main class="min-h-screen flex items-center justify-center px-4 py-10">
+
+        <section class="w-full max-w-4xl">
+
+            <!-- Header -->
+            <header class="text-center mb-8">
+
+                <div class="inline-flex items-center gap-2 px-4 py-2 mb-5
+                            rounded-full border border-cyan-400/20
+                            bg-cyan-400/5 text-cyan-400 mono text-xs">
+
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+
+                    API STATUS: ONLINE
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
+                    Jokez-<span class="text-cyan-400">By-Harkinz</span>
+                </h1>
+
+                <p class="mt-4 text-slate-400 max-w-xl mx-auto">
+                    A simple API-powered joke generator for developers,
+                    coders and anyone who needs a quick laugh.
+                </p>
+
+            </header>
+
+
+            <!-- Card -->
+            <div class="relative overflow-hidden rounded-3xl
+                        border border-white/10
+                        bg-slate-900/80 backdrop-blur-xl
+                        glow">
+
+                <!-- Top bar -->
+                <div class="flex items-center justify-between
+                            px-5 sm:px-7 py-4
+                            border-b border-white/10">
+
+                    <div class="flex items-center gap-2">
+
+                        <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-400"></span>
+
+                    </div>
+
+                    <span class="mono text-xs text-slate-500">
+                        joke-generator.js
+                    </span>
+
+                </div>
+
+
+                <!-- Content -->
+                <div class="p-6 sm:p-10 md:p-12">
+
+                    <!-- API information -->
+                    <div class="flex flex-wrap gap-3 mb-8">
+
+                        <span class="mono text-xs px-3 py-2 rounded-lg
+                                     bg-slate-800 text-cyan-400">
+                            GET /joke
+                        </span>
+
+                        <span class="mono text-xs px-3 py-2 rounded-lg
+                                     bg-slate-800 text-slate-400">
+                            JSON
+                        </span>
+
+                        <span class="mono text-xs px-3 py-2 rounded-lg
+                                     bg-slate-800 text-green-400">
+                            200 OK
+                        </span>
+
+                    </div>
+
+
+                    <!-- Joke area -->
+                    <div id="jokeContainer"
+                         class="min-h-[230px] flex flex-col justify-center">
+
+                        <!-- Loading -->
+                        <div id="loading" class="text-center">
+
+                            <div class="inline-block w-8 h-8
+                                        border-4 border-slate-700
+                                        border-t-cyan-400
+                                        rounded-full animate-spin">
+                            </div>
+
+                            <p class="mt-4 mono text-sm text-slate-500">
+                                Fetching joke...
+                            </p>
+
+                        </div>
+
+
+                        <!-- Joke -->
+                        <div id="jokeContent" class="hidden">
+
+                            <div class="mb-5">
+
+                                <span class="mono text-xs text-cyan-400">
+                                    // RESPONSE
+                                </span>
+
+                            </div>
+
+                            <!-- Setup -->
+                            <p id="setup"
+                               class="text-xl sm:text-2xl md:text-3xl
+                                      font-semibold leading-relaxed
+                                      text-white">
+                            </p>
+
+                            <!-- Delivery -->
+                            <p id="delivery"
+                               class="mt-6 text-lg sm:text-xl
+                                      text-cyan-300 font-medium">
+                            </p>
+
+                        </div>
+
+
+                        <!-- Error -->
+                        <div id="error"
+                             class="hidden text-center">
+
+                            <div class="text-red-400 text-4xl mb-3">
+                                ⚠
+                            </div>
+
+                            <p class="text-red-400 font-semibold">
+                                API request failed
+                            </p>
+
+                            <p class="text-slate-500 text-sm mt-2">
+                                Check your connection and try again.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Divider -->
+                    <div class="border-t border-white/10 my-8"></div>
+
+
+                    <!-- Controls -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+
+                        <button
+                            id="newJokeBtn"
+                            class="flex-1 flex items-center justify-center
+                                   gap-2 px-6 py-4 rounded-xl
+                                   bg-cyan-400 text-slate-950
+                                   font-bold
+                                   hover:bg-cyan-300
+                                   active:scale-[0.98]
+                                   transition">
+
+                            <span>⚡</span>
+                            Generate Joke
+
+                        </button>
+
+
+                        <button
+                            id="copyBtn"
+                            class="flex-1 flex items-center justify-center
+                                   gap-2 px-6 py-4 rounded-xl
+                                   border border-white/10
+                                   bg-slate-800
+                                   text-white
+                                   font-semibold
+                                   hover:bg-slate-700
+                                   active:scale-[0.98]
+                                   transition">
+
+                            📋 Copy Joke
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Bottom stats -->
+                    <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+
+                        <div class="rounded-xl bg-slate-800/70 p-4">
+
+                            <p class="mono text-xs text-slate-500">
+                                REQUESTS
+                            </p>
+
+                            <p id="requestCount"
+                               class="text-xl font-bold mt-1">
+                                0
+                            </p>
+
+                        </div>
+
+
+                        <div class="rounded-xl bg-slate-800/70 p-4">
+
+                            <p class="mono text-xs text-slate-500">
+                                CATEGORY
+                            </p>
+
+                            <p id="category"
+                               class="text-xl font-bold mt-1">
+                                —
+                            </p>
+
+                        </div>
+
+
+                        <div class="hidden sm:block rounded-xl bg-slate-800/70 p-4">
+
+                            <p class="mono text-xs text-slate-500">
+                                TYPE
+                            </p>
+
+                            <p id="type"
+                               class="text-xl font-bold mt-1">
+                                —
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="text-center mt-6">
+
+                <p class="mono text-xs text-slate-600">
+                    Powered by JokeAPI • Built with JavaScript
+                </p>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+ body {
+            font-family: "Inter", sans-serif;
+        }
+
+        .mono {
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .glow {
+            box-shadow:
+                0 0 40px rgba(34, 211, 238, 0.08),
+                0 25px 70px rgba(0, 0, 0, 0.4);
+        }
